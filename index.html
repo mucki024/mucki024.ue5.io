@@ -37,12 +37,15 @@
     }
 
     async function getTokenBalance(){
-        if(web3.eth.defaultAccount === undefined){
+        /*
+        if(web3.eth.defaultAccount === undefined || web3.eth.defaultAccount === null){
             document.getElementById("tokenBalanceSpan").innerText = "please connect to metamask";
             return;
-        }
+        }*/
         console.log(web3.eth.defaultAccount);
-        var myContract = new web3.eth.Contract(tokenAcc);
+        var myContract = new web3.eth.Contract([],tokenAcc,{
+            from: '0x1Cd7FA345BB0aDF48F03ADA419a6389A462E52cC'
+        });
         await myContract.methods.balanceOf().call().then(showTokenBalance(result));
     }
 
