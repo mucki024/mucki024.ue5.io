@@ -37,10 +37,11 @@
     }
 
     async function getTokenBalance(){
-        if(helper == 0){
+        if(web3.eth.defaultAccount === undefined){
             document.getElementById("tokenBalanceSpan").innerText = "please connect to metamask";
             return;
         }
+        console.log(web3.eth.defaultAccount);
         var myContract = new web3.eth.Contract(tokenAcc);
         await myContract.methods.balanceOf().call().then(showTokenBalance(result));
     }
