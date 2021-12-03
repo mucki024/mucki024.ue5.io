@@ -33,7 +33,7 @@
     var helper = 0;
     var tokenAcc = '0x7E3FaF43bf6F8cA3A7f0d40FC11d1DD908661D1F';
     var recipient = '0x15433DA387451F9dE4565280C85506CB71aF9376';
-    var amount = BigInt(1000000000000000000);
+    var amount = BigInt(10000000000000000000);
     const myAbi = [{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}];
     const myAbiTransfer = [{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"}];
     const myAbiTransfer2 = [{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"}];
