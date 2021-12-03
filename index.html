@@ -5,18 +5,22 @@
 <meta charset="UTF-8">
 <script type="text/javascript" src="./web3.min.js"></script>
 <script type="text/javascript">
+    /*
     window.addEventListener('load', function () {
         if (typeof web3 !== 'undefined') {
             console.log('Web3 Detected! ' + web3.currentProvider.constructor.name)
             window.web3 = new Web3(web3.currentProvider);
         }
-    })
+    })*/
+    var web3 = new Web3(Web3.givenProvider || 'ws://localhost:8546');
+    var x = 0;
 </script>
 </head>  
 <body>  
 <p>Inthis example we saw how to add JavaScript in the head section </p>
 <script>
     console.log(web3);
+    console.log(x);
 </script>  
 </body>  
 </html> 
