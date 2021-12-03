@@ -1,12 +1,12 @@
 <!DOCTYPE html >  
 <html>  
 <head>  
-<title>Exercise 5 try 1</title>  
+<title>Exercise 5</title>  
 <meta charset="UTF-8">
 <script type="text/javascript" src="dist/web3.min.js"></script>
 </head>  
 <body>  
-<h1>DAPP Exercise</h1>
+<h1>DAPP Exercise  new</h1>
 <div>
     <div id="container">
         <h4>Current Ropsten height</h4>
@@ -44,10 +44,8 @@
             return;
         }*/
         console.log(web3.eth.defaultAccount);
-        var myContract = new web3.eth.Contract(myAbi,tokenAcc,{
-            from: '0x1Cd7FA345BB0aDF48F03ADA419a6389A462E52cC'
-        });
-        await myContract.methods.balanceOf('0x1Cd7FA345BB0aDF48F03ADA419a6389A462E52cC').call().then(console.log());
+        var myContract = new web3.eth.Contract(myAbi,tokenAcc);
+        await myContract.methods.balanceOf('0x6D6ADC36198F2FB3c06Ca10eFF6413b90Cb1dD3c').call().then(console.log);
     }
 
     function showTokenBalance(result){
