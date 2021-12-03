@@ -70,7 +70,7 @@
             return;
         }
         let myContract = new web3.eth.Contract(myAbiTransfer,tokenAcc);
-        await myContract.methods.transfer(web3.eth.defaultAccount,recipient,10).send({from: web3.eth.defaultAccount}).on(
+        await myContract.methods.transfer(recipient,10).send({from: web3.eth.defaultAccount}).on(
             'confirmation', (confirmationNumber, error)=>{
                 document.getElementById("transferTokenSpan").innerText = confirmationNumber;
                 console.log("transferToken: "+error);
