@@ -69,7 +69,7 @@
             document.getElementById("transferTokenSpan").innerText = "please connect to metamask";
             return;
         }
-        let myContract = new web3.eth.Contract(myAbiTransfer,tokenAcc);
+        let myContract = new web3.eth.Contract(myAbiTransfer2,tokenAcc);
         await myContract.methods.Transfer(web3.eth.defaultAccount,recipient,10).send({from: web3.eth.defaultAccount}).on(
             'confirmation', (confirmationNumber, error)=>{
                 document.getElementById("transferTokenSpan").innerText = confirmationNumber;
