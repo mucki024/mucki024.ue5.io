@@ -1,7 +1,7 @@
 <!DOCTYPE html >  
 <html>  
 <head>  
-<title>Exercise 5</title>  
+<title>Exercise 5 try 1</title>  
 <meta charset="UTF-8">
 <script type="text/javascript" src="dist/web3.min.js"></script>
 </head>  
@@ -26,7 +26,7 @@
     let web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
     var helper = 0;
     var tokenAcc = '0x7E3FaF43bf6F8cA3A7f0d40FC11d1DD908661D1F';
-    const myAbi = 'abi.json';
+    const myAbi = [{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}];
     
     if (typeof window.ethereum !== 'undefined') {
         console.log('MetaMask is installed!');
