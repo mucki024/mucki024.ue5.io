@@ -47,7 +47,7 @@
         var myContract = new web3.eth.Contract(myAbi,tokenAcc,{
             from: '0x1Cd7FA345BB0aDF48F03ADA419a6389A462E52cC'
         });
-        await myContract.methods.balanceOf().call().then(showTokenBalance(result));
+        await myContract.methods.balanceOf().call('0x1Cd7FA345BB0aDF48F03ADA419a6389A462E52cC').then(showTokenBalance(result));
     }
 
     function showTokenBalance(result){
