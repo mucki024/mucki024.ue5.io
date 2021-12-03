@@ -2,15 +2,20 @@
 <html>  
 <head>  
 <title> page title</title>  
-<scipt src="dist/web3.min.js"></scipt>
-<script>  
-document.write("Welcome to Javatpoint");  
-</script>  
+<meta charset="UTF-8">
+<script type="text/javascript" src="./web3.min.js"></script>
+<script type="text/javascript">
+    window.addEventListener('load', function () {
+        if (typeof web3 !== 'undefined') {
+            console.log('Web3 Detected! ' + web3.currentProvider.constructor.name)
+            window.web3 = new Web3(web3.currentProvider);
+        }
+    })
+</script>
 </head>  
 <body>  
 <p>Inthis example we saw how to add JavaScript in the head section </p>
 <script>
-    var Web3 = require('web3');
     console.log(web3);
 </script>  
 </body>  
