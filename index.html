@@ -12,7 +12,7 @@
             window.web3 = new Web3(web3.currentProvider);
         }
     })*/
-    var web3 = new Web3(Web3.givenProvider || 'ws://localhost:8546');
+    var Web3 = new web3(web3.givenProvider || 'ws://localhost:8546');
     var x = 0;
 </script>
 </head>  
@@ -21,6 +21,7 @@
 <script>
     console.log(web3);
     console.log(x);
+    console.log("Hello");
 </script>  
 </body>  
 </html> 
