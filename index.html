@@ -26,6 +26,7 @@
     let web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
     var helper = 0;
     var tokenAcc = '0x7E3FaF43bf6F8cA3A7f0d40FC11d1DD908661D1F';
+    const myAbi = 'abi.json';
     
     if (typeof window.ethereum !== 'undefined') {
         console.log('MetaMask is installed!');
@@ -43,7 +44,7 @@
             return;
         }*/
         console.log(web3.eth.defaultAccount);
-        var myContract = new web3.eth.Contract([],tokenAcc,{
+        var myContract = new web3.eth.Contract(myAbi,tokenAcc,{
             from: '0x1Cd7FA345BB0aDF48F03ADA419a6389A462E52cC'
         });
         await myContract.methods.balanceOf().call().then(showTokenBalance(result));
