@@ -9,16 +9,22 @@
 <h1>DAPP Exercise try</h1>
 <div>
     <div id="container">
-        <h4>Current Ropsten height</h4>
+        <h5>Current Ropsten height</h5>
         <button onclick="getHeight()">get height</button>
         <span id ="heightSpan"></span>
     </div>
     <div id="container2">
-        <h4>Current Token Balance</h4>
+        <h5>Current Token Balance</h5>
         <button onclick="getTokenBalance()">get balance</button>
         <span id ="tokenBalanceSpan"></span>
     </div>
     <div id="container3">
+        <h5>Transfer Token to special address</h5>
+        <button onclick="transferToken()">transfer 10 Token</button>
+        <span id ="transferTokenSpan"></span>
+    </div>
+    <div id="container4">
+        <h5></h5>
         <button class="enableEthereumButton">Enable Ethereum</button>
     </div>
 </div>
@@ -26,24 +32,28 @@
     let web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
     var helper = 0;
     var tokenAcc = '0x7E3FaF43bf6F8cA3A7f0d40FC11d1DD908661D1F';
+    var recipient = '0x15433DA387451F9dE4565280C85506CB71aF9376';
     const myAbi = [{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}];
-    
+    const myAbiTransfer = [{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"}];
+    const myAbiTransfer2 = [{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"}];
+
     if (typeof window.ethereum !== 'undefined') {
         console.log('MetaMask is installed!');
     }
     
+    //height function
     async function getHeight(){
         let curHeight = await web3.eth.getBlockNumber();
         document.getElementById("heightSpan").innerText = curHeight;
     }
 
+    //token balance of given account
     async function getTokenBalance(){
         if(web3.eth.defaultAccount === undefined || web3.eth.defaultAccount === null){
             document.getElementById("tokenBalanceSpan").innerText = "please connect to metamask";
             return;
         }
-        console.log(web3.eth.defaultAccount);
-        var myContract = new web3.eth.Contract(myAbi,tokenAcc);
+        let myContract = new web3.eth.Contract(myAbi,tokenAcc);
         await myContract.methods.balanceOf(web3.eth.defaultAccount).call().then(
             (value) => { showTokenBalance(value)}
         );
@@ -52,6 +62,21 @@
     function showTokenBalance(result){
         document.getElementById("tokenBalanceSpan").innerText = result;
     }
+
+    //transfer token to special address
+    async function transferToken(){
+        if(web3.eth.defaultAccount === undefined || web3.eth.defaultAccount === null){
+            document.getElementById("transferTokenSpan").innerText = "please connect to metamask";
+            return;
+        }
+        let myContract = new web3.eth.Contract(myAbiTransfer,tokenAcc);
+        await myContract.methods.Transfer(web3.eth.defaultAccount,recipient,10).send({from: web3.eth.defaultAccount}).on(
+            'confirmation', (confirmationNumber, error)=>{
+                document.getElementById("transferTokenSpan").innerText = confirmationNumber;
+                console.log("transferToken: "+error);
+        });
+    }
+
 
     //get meta mask input
     const ethereumButton = document.querySelector('.enableEthereumButton');
