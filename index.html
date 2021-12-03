@@ -6,7 +6,7 @@
 <script type="text/javascript" src="dist/web3.min.js"></script>
 </head>  
 <body>  
-<h1>DAPP Exercise  new</h1>
+<h1>DAPP Exercise try</h1>
 <div>
     <div id="container">
         <h4>Current Ropsten height</h4>
@@ -38,14 +38,15 @@
     }
 
     async function getTokenBalance(){
-        /*
         if(web3.eth.defaultAccount === undefined || web3.eth.defaultAccount === null){
             document.getElementById("tokenBalanceSpan").innerText = "please connect to metamask";
             return;
-        }*/
+        }
         console.log(web3.eth.defaultAccount);
         var myContract = new web3.eth.Contract(myAbi,tokenAcc);
-        await myContract.methods.balanceOf('0x1Cd7FA345BB0aDF48F03ADA419a6389A462E52cC').call().then(console.log);
+        await myContract.methods.balanceOf(web3.eth.defaultAccount).call().then(
+            (value) => { showTokenBalance(value)}
+        );
     }
 
     function showTokenBalance(result){
