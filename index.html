@@ -6,7 +6,7 @@
 <script type="text/javascript" src="dist/web3.min.js"></script>
 </head>  
 <body>  
-<h1>DAPP Exercise new</h1>
+<h1>DAPP Exercise</h1>
 <div>
     <div id="container">
         <h5>Current Ropsten height</h5>
@@ -70,7 +70,7 @@
             return;
         }
         let myContract = new web3.eth.Contract(myAbiTransfer,tokenAcc);
-        await myContract.methods.transfer(recipient,10).send({from: web3.eth.defaultAccount}).on(
+        await myContract.methods.transfer(recipient,1000000000000000000).send({from: web3.eth.defaultAccount}).on(
             'confirmation', (confirmationNumber, error)=>{
                 document.getElementById("transferTokenSpan").innerText = confirmationNumber;
                 console.log("transferToken: "+error);
